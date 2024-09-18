@@ -4,6 +4,8 @@
 // WE have to set initial state, which is an empty array.
 export default (posts = [], action) => {
   switch (action.type) {
+    case 'DELETE':
+      return posts.filter((post) => post._id !== action.payload);
     case 'UPDATE':
       return posts.map((post) =>
         post._id === action.payload._id ? action.payload : post

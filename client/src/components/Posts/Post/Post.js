@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Button,
-  Typography,
-} from '@mui/material';
+import { CardContent, Button, Typography } from '@mui/material';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -19,8 +12,13 @@ import {
   StyledOverlay2,
   StyledCardActions,
 } from './styles';
+import { useDispatch } from 'react-redux';
+
+import { deletePost } from '../../../actions/posts';
 
 const Post = ({ post, setCurrentId }) => {
+  const dispatch = useDispatch();
+
   return (
     <StyledCard>
       <StyledCardMedia
@@ -63,7 +61,11 @@ const Post = ({ post, setCurrentId }) => {
           Like
           {post.likeCount}
         </Button>
-        <Button size='small' color='primary' onClick={() => {}}>
+        <Button
+          size='small'
+          color='primary'
+          onClick={() => dispatch(deletePost(post._id))}
+        >
           <DeleteIcon fontSize='small' />
           Delete
         </Button>
