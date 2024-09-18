@@ -1,9 +1,10 @@
 import React from 'react';
 import { Grid, CircularProgress } from '@mui/material';
-import Post from './Post/Post';
 import { useSelector } from 'react-redux';
 
-const Posts = () => {
+import Post from './Post/Post';
+
+const Posts = ({ setCurrentId }) => {
   // useSelector allows us to access the store. In this case, all posts
   const posts = useSelector((state) => state.posts);
 
@@ -15,7 +16,7 @@ const Posts = () => {
     <Grid container alignItems='stretch' spacing={3}>
       {posts.map((post) => (
         <Grid key={post._id} item xs={12} sm={6}>
-          <Post post={post} />
+          <Post post={post} setCurrentId={setCurrentId} />
         </Grid>
       ))}
     </Grid>

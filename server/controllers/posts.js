@@ -1,5 +1,6 @@
 // imports the collection from the database
 import PostMessage from '../models/postMessage.js';
+import mongoose from 'mongoose';
 
 // async controller function that handles GET requests to fetch all posts from the database.
 export const getPosts = async (req, res) => {
@@ -38,4 +39,27 @@ export const createPost = async (req, res) => {
   }
   //  somewhat redundant because the response has already been sent with res.status(201).json(newPost);
   res.send('Post Creation');
+};
+
+export const updatePost = async (req, res) => {
+  // The id parameter is extracted from the URL (from req.params), and it's renamed to _id because MongoDB typically uses _id as the identifier for documents.
+  const { id: _id } = req.params;
+  // The new post data to update is extracted from req.body. This contains the updated information sent by the client.
+  const post = req.body;
+  // This checks if the provided _id is a valid MongoDB ObjectId using Mongoose’s ObjectId.isValid() method.
+  // If the ID is invalid, the function returns an HTTP 404 status and a message 'No post with that id'. This prevents unnecessary database operations on an invalid ID.
+  if (!mongoose.Types.ObjectId.isValid(_id))
+    return res.status(404).send('No post with that id');
+
+  // This line uses PostMessage.findByIdAndUpdate(), a Mongoose method, to find a document by its _id and update it with the new post data.
+  // The { new: true } option tells Mongoose to return the updated document (instead of the old one).
+  const updatedPost = await PostMessage.findByIdAndUpdate(
+    _id,
+    { ...post, _id },
+    {
+      new: true,
+    }
+  );
+
+  res.json(updatedPost);
 };

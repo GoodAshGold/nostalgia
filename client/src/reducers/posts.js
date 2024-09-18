@@ -4,6 +4,10 @@
 // WE have to set initial state, which is an empty array.
 export default (posts = [], action) => {
   switch (action.type) {
+    case 'UPDATE':
+      return posts.map((post) =>
+        post._id === action.payload._id ? action.payload : post
+      );
     case 'FETCH ALL':
       return action.payload;
     case 'CREATE':

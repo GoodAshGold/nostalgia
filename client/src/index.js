@@ -8,6 +8,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import reducers from './reducers';
 
 import App from './App';
+import './index.css';
 
 // This creates the Redux store, passing in the combined reducers. The store holds the entire state tree of the application.
 const store = configureStore({

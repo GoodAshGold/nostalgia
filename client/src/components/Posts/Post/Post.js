@@ -12,7 +12,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import moment from 'moment';
 import {
-  Wrapper,
   StyledCard,
   StyledCardMedia,
   StyledDetails,
@@ -21,7 +20,7 @@ import {
   StyledCardActions,
 } from './styles';
 
-const Post = ({ post }) => {
+const Post = ({ post, setCurrentId }) => {
   return (
     <StyledCard>
       <StyledCardMedia
@@ -36,7 +35,12 @@ const Post = ({ post }) => {
         </Typography>
       </StyledOverlay>
       <StyledOverlay2>
-        <Button size='small' onClick={() => {}}>
+        <Button
+          size='small'
+          onClick={() => {
+            setCurrentId(post._id);
+          }}
+        >
           <MoreHorizIcon fontSize='default' />
         </Button>
       </StyledOverlay2>
@@ -45,8 +49,11 @@ const Post = ({ post }) => {
           {post.tags.map((tag) => `#${tag} `)}
         </Typography>
       </StyledDetails>
+      <Typography style={{ padding: '0 16px' }} variant='h5' gutterBottom>
+        {post.title}
+      </Typography>
       <CardContent>
-        <Typography style={{ padding: '0 16px' }} variant='h5' gutterBottom>
+        <Typography variant='h5' gutterBottom>
           {post.message}
         </Typography>
       </CardContent>

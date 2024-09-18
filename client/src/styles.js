@@ -11,7 +11,7 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
 }));
 
 const StyledHeading = styled(Typography)(({ theme }) => ({
-  color: 'rgba(0,183,255, 1)',
+  color: '#aa3333',
 }));
 
 const StyledImage = styled('img')(({ theme }) => ({
