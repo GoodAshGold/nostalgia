@@ -11,6 +11,8 @@ import mongoose from 'mongoose';
 // Cross-Origin Resource Sharing allows you to request data from one website to another
 import cors from 'cors';
 
+import dotenv from 'dotenv';
+dotenv.config();
 // Imports the postRoutes module which contains route definitions related to "posts". This handles various HTTP requests like GET, POST, PUT, and DELETE for posts.
 import postRoutes from './routes/posts.js';
 
@@ -35,8 +37,8 @@ app.use('/posts', postRoutes);
 // * CONNECTING TO MONGODB AND STARTING THE SERVER *
 
 // This connection string connects our application with our MongoDB Cluster aka our online cloud database
-const CONNECTION_URL =
-  'mongodb+srv://fostonashton:BTeTAEIOr5BMa0AL@cluster0.pufow.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+// const CONNECTION_URL =
+//   'mongodb+srv://fostonashton:BTeTAEIOr5BMa0AL@cluster0.pufow.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
 // A variable that checks to see if the environment varible is set, and if not it defaults to 5001
 const PORT = process.env.PORT || 5001;
@@ -45,7 +47,10 @@ const PORT = process.env.PORT || 5001;
 // useNewUrlParser set to true opts in to the new, more flexible way of parsing the Mongoose connection string
 // useUnifiedTopology is a newer better engine for discovering the server
 mongoose
-  .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.CONNECTION_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   // Once the database connection is successfully established, the server starts listening for incoming requests on the specified PORT`. A message is logged to the console confirming that the server is running.
   .then(() =>
     app.listen(PORT, () => console.log(`Server running on port: ${PORT}`))

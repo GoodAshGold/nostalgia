@@ -1,5 +1,5 @@
 import { styled } from '@mui/system';
-import { AppBar, Typography } from '@mui/material';
+import { AppBar, Grid, Typography } from '@mui/material';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   borderRadius: 15,
@@ -18,4 +18,10 @@ const StyledImage = styled('img')(({ theme }) => ({
   marginLeft: '15px',
 }));
 
-export { StyledAppBar, StyledHeading, StyledImage };
+const StyledGrid = styled(Grid)(({ theme }) => ({
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column-reverse',
+  },
+}));
+
+export { StyledAppBar, StyledHeading, StyledImage, StyledGrid };

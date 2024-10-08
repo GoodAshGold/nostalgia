@@ -97,7 +97,9 @@ const Form = ({ currentId, setCurrentId }) => {
             label='Tags'
             fullWidth
             value={postData.tags}
-            onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
+            onChange={(e) =>
+              setPostData({ ...postData, tags: e.target.value.split(',') })
+            }
           ></TextField>
           <StyledFileInput>
             {/*  The FileBase component automatically handles reading the file and encoding it into Base64.

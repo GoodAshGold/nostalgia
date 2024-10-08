@@ -7,7 +7,7 @@ import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
 import memories from './images/memories.png';
 
-import { StyledAppBar, StyledHeading, StyledImage } from './styles';
+import { StyledAppBar, StyledHeading, StyledImage, StyledGrid } from './styles';
 
 const App = () => {
   const [currentId, setCurrentId] = useState(null);
@@ -20,13 +20,13 @@ const App = () => {
     <Container maxWidth='lg'>
       <StyledAppBar position='static' color='inherit'>
         <StyledHeading variant='h2' align='center'>
-          Memories
+          Nostalgia
         </StyledHeading>
         <StyledImage src={memories} alt='memories' height='60' />
       </StyledAppBar>
       <Grow in>
         <Container>
-          <Grid
+          <StyledGrid
             container
             justify='space-between'
             alignItems='stretch'
@@ -38,7 +38,7 @@ const App = () => {
             <Grid item xs={12} sm={4}>
               <Form currentId={currentId} setCurrentId={setCurrentId} />
             </Grid>
-          </Grid>
+          </StyledGrid>
         </Container>
       </Grow>
     </Container>
