@@ -1,6 +1,6 @@
 import axios from 'axios';
 //  This url points to our backend route
-const url = 'http://localhost:5001/posts';
+const url = 'https://nostalgia-backend.onrender.com/posts';
 
 //  Retrieves (fetches) posts from the backend.
 export const fetchPosts = () => axios.get(url);
